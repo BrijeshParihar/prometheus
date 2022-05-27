@@ -1,0 +1,16 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+rule_files:
+    - "rules.yml"
+  # - "to-do.rules"
+scrape_configs:
+  - job_name: demo
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['0.0.0.0:8080']
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['0.0.0.0.76:9093']
