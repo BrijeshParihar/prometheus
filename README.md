@@ -2,7 +2,7 @@
 prometheus is open-source system for monitor services and create alerts.prometheus hit the targets using http call in given interval to collect metrics and target service listen request on sepecified port number.it collect data and metrics from different services and store in timeshering database .prometheus uses PromQL query language to fetch data from timesharing database.
 we can also monitor 3rd party software using expoter.
 
-# dependency library fom prometheus 
+# dependency library for prometheus 
 implementation 'org.springframework.boot:spring-boot-starter-actuator'
 implementation 'io.micrometer:micrometer-registry-prometheus:1.8.3' 
 
