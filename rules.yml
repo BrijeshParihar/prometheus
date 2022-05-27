@@ -1,0 +1,38 @@
+groups:
+  - name: Alerting Rules
+    rules:
+      # Alert for instance down
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: 'critical'
+        annotations:
+          Title: 'Instance {{ $labels.instance }} is down'
+          Description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+
+      # Alert for high request rate
+      - alert: RequestRate
+        expr: rate(http_server_requests_seconds_count[1m]) > 1
+        labels:
+          severity: major
+        annotations:
+          Title: "Instance {{ $labels.instance }} - high request rate"
+          Description: "{{ $labels.instance  }} (measured by {{ $labels.job }}) has high request rate ({{ $value }}) over 1 minutes."
+
+      # Alert for high error rate
+      - alert: ErrorRate
+        expr: rate(log4j2_events_total{level='error'}[5m]) > 3
+        labels:
+          severity: major
+        annotations:
+          Title: "Instance {{ $labels.instance }} - high Error rate"
+          Description: "{{ $labels.instance  }} (measured by {{ $labels.job }}) has high error rate ({{ $value }}) over 5 minutes."
+
+      # Alert for high CPU usage
+      - alert: CPURate
+        expr:  system_cpu_usage > 0.6
+        labels:
+          severity: high
+        annotations:
+          summary: WARN! CPU usage of {{ $labels.instance  }} is High
