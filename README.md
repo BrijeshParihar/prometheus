@@ -8,23 +8,39 @@ implementation 'org.springframework.boot:spring-boot-starter-actuator'
 implementation 'io.micrometer:micrometer-registry-prometheus:1.8.3' 
 
 # properties for prometheus in springboot project 
-management:
+management: 
+
   endpoints:
-    web:
+  
+    web: 
+    
       cors:
+      
         allowed-origins: '*'
+        
         allowed-methods: OPTIONS,GET
+        
         allowed-headers: '*'
+        
       exposure:
+      
         include: '*'
+        
   metrics:
+  
     distribution:
+    
       percentiles-histogram:
+      
         http:
+        
           server:
+          
             requests: true
+            
  
 # prometheus Default Port:
+
 9090
 # create docker image
 docker build -t prometheus:latest .
