@@ -4,6 +4,7 @@ we can also monitor 3rd party software using expoter.
 
 # dependency library for prometheus 
 implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 implementation 'io.micrometer:micrometer-registry-prometheus:1.8.3' 
 
 # properties for prometheus in springboot project 
